@@ -1,2 +1,2 @@
-@Library('pipeline-library')
+@Library('pipeline-library') _
 buildPlugin()
