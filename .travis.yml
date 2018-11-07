@@ -1,3 +1,11 @@
 language: java
 sudo: false
 script: mvn -DskipTests clean verify
+deploy:
+  provider: releases
+  api_key: ${api_key}
+  file: "target/workflow-durable-task-step.hpi"
+  skip_cleanup: true
+  on:
+    all_branches: true
+    tags: true
