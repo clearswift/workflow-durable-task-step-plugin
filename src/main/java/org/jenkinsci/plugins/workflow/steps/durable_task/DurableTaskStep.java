@@ -189,7 +189,7 @@ public abstract class DurableTaskStep extends Step {
                 }
             }
             boolean directory;
-            try (Timeout timeout = Timeout.limit(10, TimeUnit.SECONDS)) {
+            try (Timeout timeout = Timeout.limit(30, TimeUnit.SECONDS)) {
                 directory = ws.isDirectory();
             } catch (Exception x) {
                 // RequestAbortedException, ChannelClosedException, EOFException, wrappers thereof; InterruptedException if it just takes too long.
@@ -245,11 +245,11 @@ public abstract class DurableTaskStep extends Step {
                         stopTask = null;
                         if (recurrencePeriod > 0) {
                             recurrencePeriod = 0;
-                            logger().println("After 10s process did not stop");
+                            logger().println("After 30s process did not stop");
                             getContext().onFailure(cause);
                         }
                     }
-                }, 10, TimeUnit.SECONDS);
+                }, 30, TimeUnit.SECONDS);
                 controller.stop(workspace, launcher());
             } else {
                 logger().println("Could not connect to " + node + " to send interrupt signal to process");
@@ -312,7 +312,7 @@ public abstract class DurableTaskStep extends Step {
             if (workspace == null) {
                 return; // slave not yet ready, wait for another day
             }
-            try (Timeout timeout = Timeout.limit(10, TimeUnit.SECONDS)) {
+            try (Timeout timeout = Timeout.limit(30, TimeUnit.SECONDS)) {
                         if (controller.writeLog(workspace, logger())) {
                             getContext().saveState();
                             recurrencePeriod = MIN_RECURRENCE_PERIOD; // got output, maybe we will get more soon
