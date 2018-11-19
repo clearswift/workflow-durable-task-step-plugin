@@ -30,8 +30,7 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-          keys:
-            key: workflow-durable-task-step-plugin-{{ checksum "pom.xml" }}
+          key: workflow-durable-task-step-plugin-{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline
 
