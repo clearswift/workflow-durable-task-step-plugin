@@ -45,6 +45,6 @@ jobs:
           path: target/surefire-reports
         
       - store_artifacts:
-          path: target/*.hpi
+          path: target/workflow-durable-task-step.hpi
 
 
