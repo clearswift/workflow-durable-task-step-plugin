@@ -36,11 +36,11 @@ jobs:
 
       - save_cache:
           paths:
-            - ~/.m2
+              - ~/.m2
           key: workflow-durable-task-step-plugin-{{ checksum "pom.xml" }}
       
       - store_test_results:
-        path: target/surefire-reports
+          path: target/surefire-reports
         
       - store_artifacts:
           path: target/workflow-durable-task-step-2.17-SNAPSHOT.jar
