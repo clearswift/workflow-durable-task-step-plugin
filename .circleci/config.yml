@@ -38,11 +38,13 @@ jobs:
           paths:
               - ~/.m2
           key: workflow-durable-task-step-plugin-{{ checksum "pom.xml" }}
-      
+
+      - run: mvn package
+
       - store_test_results:
           path: target/surefire-reports
         
       - store_artifacts:
-          path: target/workflow-durable-task-step-2.17-SNAPSHOT.jar
+          path: target/workflow-durable-task-step-2.17-SNAPSHOT.hpi
 
 
